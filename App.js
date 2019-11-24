@@ -20,10 +20,10 @@ class MainActivity extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      TextInput_Student_Name: '',
-      TextInput_Student_Class: '',
-      TextInput_Student_PhoneNumber: '',
-      TextInput_Student_Email: '',
+      nombre: '',
+      clase: '',
+      numeroCelular: '',
+      email: '',
       message: false,
     }
   }
@@ -34,10 +34,10 @@ class MainActivity extends React.Component {
 
   InsertStudentRecordsToServer = () => {
     if (
-      this.state.TextInput_Student_Name === '' ||
-      this.state.TextInput_Student_Email === '' ||
-      this.state.TextInput_Student_Class === '' ||
-      this.state.TextInput_Student_PhoneNumber === ''
+      this.state.nombre === '' ||
+      this.state.email === '' ||
+      this.state.clase === '' ||
+      this.state.numeroCelular === ''
     ) {
       return this.setState({ message: true })
     }
@@ -49,10 +49,10 @@ class MainActivity extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        student_name: this.state.TextInput_Student_Name,
-        student_class: this.state.TextInput_Student_Class,
-        student_phone_number: this.state.TextInput_Student_PhoneNumber,
-        student_email: this.state.TextInput_Student_Email,
+        student_name: this.state.nombre,
+        student_class: this.state.clase,
+        student_phone_number: this.state.numeroCelular,
+        student_email: this.state.email,
       }),
     })
       .then(response => response.json())
@@ -81,7 +81,7 @@ class MainActivity extends React.Component {
           <TextInput
             placeholder="Ingrese nombre"
             onChangeText={TextInputValue =>
-              this.setState({ TextInput_Student_Name: TextInputValue })
+              this.setState({ nombre: TextInputValue })
             }
             underlineColorAndroid="transparent"
             style={styles.TextInputStyleClass}
@@ -90,7 +90,7 @@ class MainActivity extends React.Component {
           <TextInput
             placeholder="Ingrese la clase o asignatura"
             onChangeText={TextInputValue =>
-              this.setState({ TextInput_Student_Class: TextInputValue })
+              this.setState({ clase: TextInputValue })
             }
             underlineColorAndroid="transparent"
             style={styles.TextInputStyleClass}
@@ -99,7 +99,7 @@ class MainActivity extends React.Component {
           <TextInput
             placeholder="Ingrese Teléfono"
             onChangeText={TextInputValue =>
-              this.setState({ TextInput_Student_PhoneNumber: TextInputValue })
+              this.setState({ numeroCelular: TextInputValue })
             }
             underlineColorAndroid="transparent"
             style={styles.TextInputStyleClass}
@@ -108,7 +108,7 @@ class MainActivity extends React.Component {
           <TextInput
             placeholder="Ingrese Correo Electrónico"
             onChangeText={TextInputValue =>
-              this.setState({ TextInput_Student_Email: TextInputValue })
+              this.setState({ email: TextInputValue })
             }
             underlineColorAndroid="transparent"
             style={styles.TextInputStyleClass}
@@ -263,23 +263,22 @@ class EditStudentRecordActivity extends React.Component {
     super(props)
 
     this.state = {
-      TextInput_Student_ID: '',
-      TextInput_Student_Name: '',
-      TextInput_Student_Class: '',
-      TextInput_Student_PhoneNumber: '',
-      TextInput_Student_Email: '',
+      userID: '',
+      nombre: '',
+      clase: '',
+      numeroCelular: '',
+      email: '',
     }
   }
 
   componentDidMount() {
     // Received Student Details Sent From Previous Activity and Set Into State.
     this.setState({
-      TextInput_Student_ID: this.props.navigation.state.params.ID,
-      TextInput_Student_Name: this.props.navigation.state.params.NAME,
-      TextInput_Student_Class: this.props.navigation.state.params.CLASS,
-      TextInput_Student_PhoneNumber: this.props.navigation.state.params
-        .PHONE_NUMBER,
-      TextInput_Student_Email: this.props.navigation.state.params.EMAIL,
+      userID: this.props.navigation.state.params.ID,
+      nombre: this.props.navigation.state.params.NAME,
+      clase: this.props.navigation.state.params.CLASS,
+      numeroCelular: this.props.navigation.state.params.PHONE_NUMBER,
+      email: this.props.navigation.state.params.EMAIL,
     })
   }
 
@@ -294,11 +293,11 @@ class EditStudentRecordActivity extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        student_id: this.state.TextInput_Student_ID,
-        student_name: this.state.TextInput_Student_Name,
-        student_class: this.state.TextInput_Student_Class,
-        student_phone_number: this.state.TextInput_Student_PhoneNumber,
-        student_email: this.state.TextInput_Student_Email,
+        student_id: this.state.userID,
+        student_name: this.state.nombre,
+        student_class: this.state.clase,
+        student_phone_number: this.state.numeroCelular,
+        student_email: this.state.email,
       }),
     })
       .then(response => response.json())
@@ -319,7 +318,7 @@ class EditStudentRecordActivity extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        student_id: this.state.TextInput_Student_ID,
+        student_id: this.state.userID,
       }),
     })
       .then(response => response.json())
@@ -344,9 +343,9 @@ class EditStudentRecordActivity extends React.Component {
 
         <TextInput
           placeholder="Ingrese nombre"
-          value={this.state.TextInput_Student_Name}
+          value={this.state.nombre}
           onChangeText={TextInputValue =>
-            this.setState({ TextInput_Student_Name: TextInputValue })
+            this.setState({ nombre: TextInputValue })
           }
           underlineColorAndroid="transparent"
           style={styles.TextInputStyleClass}
@@ -354,9 +353,9 @@ class EditStudentRecordActivity extends React.Component {
 
         <TextInput
           placeholder="Ingrese clase o asignatura"
-          value={this.state.TextInput_Student_Class}
+          value={this.state.clase}
           onChangeText={TextInputValue =>
-            this.setState({ TextInput_Student_Class: TextInputValue })
+            this.setState({ clase: TextInputValue })
           }
           underlineColorAndroid="transparent"
           style={styles.TextInputStyleClass}
@@ -364,9 +363,9 @@ class EditStudentRecordActivity extends React.Component {
 
         <TextInput
           placeholder="Ingrese número de teléfono"
-          value={this.state.TextInput_Student_PhoneNumber}
+          value={this.state.numeroCelular}
           onChangeText={TextInputValue =>
-            this.setState({ TextInput_Student_PhoneNumber: TextInputValue })
+            this.setState({ numeroCelular: TextInputValue })
           }
           underlineColorAndroid="transparent"
           style={styles.TextInputStyleClass}
@@ -374,9 +373,9 @@ class EditStudentRecordActivity extends React.Component {
 
         <TextInput
           placeholder="Ingrese correo electrónico"
-          value={this.state.TextInput_Student_Email}
+          value={this.state.email}
           onChangeText={TextInputValue =>
-            this.setState({ TextInput_Student_Email: TextInputValue })
+            this.setState({ email: TextInputValue })
           }
           underlineColorAndroid="transparent"
           style={styles.TextInputStyleClass}
