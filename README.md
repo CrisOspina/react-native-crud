@@ -19,7 +19,7 @@
 
 - `expo web` || `npm web`
 
-### CRUD construido con https://expo.io/
-### Utilizando react-native https://facebook.github.io/react-native/
+### Entorno construido con https://expo.io/
+### CRUD react-native https://facebook.github.io/react-native/
 ### APIS - php
 ### Base de datos - mysql
